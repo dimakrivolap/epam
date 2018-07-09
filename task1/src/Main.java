@@ -1,3 +1,11 @@
+/*
+ * Main
+ *
+ * Version 1.0
+ *
+ * Copyright Криволап Д.Э., 2018
+ */
+
 import gift.Gift;
 import gift.RandomGift;
 import sweet.Sweetable;
@@ -8,9 +16,12 @@ public class Main {
     public static void main(String[] args) {
         Gift gift = new RandomGift();
         System.out.println("Total Weight : " + gift.getWeight());
+        System.out.println("Original: ");
         printSweets(gift.getSweets());
         gift.sortWeight();
+        System.out.println("Sorted: ");
         printSweets(gift.getSweets());
+        System.out.println("Found sweets: ");
         printSweets(gift.find(50, 60));
     }
 

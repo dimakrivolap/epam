@@ -8,8 +8,6 @@
 package sweet;
 
 public class Mars implements Sweetable {
-
-
     @Override
     public double getSugar() {
         return 60;

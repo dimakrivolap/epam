@@ -1,11 +1,19 @@
+/*
+ * Gift
+ *
+ * Version 1.0
+ *
+ * Copyright Криволап Д.Э., 2018
+ */
 package gift;
 
 import sweet.Sweetable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Gift {
+
     private List<Sweetable> sweets;
 
     Gift() {

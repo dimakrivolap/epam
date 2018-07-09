@@ -1,10 +1,17 @@
+/*
+ * RandomGift
+ *
+ * Version 1.0
+ *
+ * Copyright Криволап Д.Э., 2018
+ */
 package gift;
 
 import sweet.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 public class RandomGift extends Gift {
 

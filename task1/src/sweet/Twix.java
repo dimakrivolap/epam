@@ -1,3 +1,10 @@
+/*
+ * Twix
+ *
+ * Version 1.0
+ *
+ * Copyright Криволап Д.Э., 2018
+ */
 package sweet;
 
 public class Twix implements Sweetable {
