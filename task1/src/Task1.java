@@ -1,5 +1,5 @@
 /*
- * Main
+ * Task1
  *
  * Version 1.0
  *
@@ -12,7 +12,7 @@ import sweet.Sweetable;
 
 import java.util.List;
 
-public class Main {
+public class Task1 {
     public static void main(String[] args) {
         Gift gift = new RandomGift();
         System.out.println("Total Weight : " + gift.getWeight());
