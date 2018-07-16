@@ -37,7 +37,7 @@ public class Parser {
     }
 
     private String[] getWords(String sentence){
-        Pattern pattern = Pattern.compile("[ ,.!?]");
+        Pattern pattern = Pattern.compile("\\s*(\\s|,|!|\\.)\\s*");
         return pattern.split(sentence);
     }
 
