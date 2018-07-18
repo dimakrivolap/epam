@@ -8,7 +8,7 @@
 package main.model.entity;
 
 public class Snickers extends Sweet {
-    {
+    public Snickers(){
         setSugar(50);
         setWeight(70);
     }
