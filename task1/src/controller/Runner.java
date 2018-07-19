@@ -1,5 +1,11 @@
 package controller;
-
+/*
+ * service.Runner
+ *
+ * Version 1.0
+ *
+ * Copyright Dmitry Krivolap, 2018
+ */
 import model.entity.Gift;
 import service.GiftCharacteristic;
 import service.RandomGiftCreator;
@@ -8,7 +14,12 @@ import service.Searcher;
 import service.Sorter;
 
 import java.util.List;
-
+/**
+ * Runner contains controls for the most important classes from task1 package.
+ *
+ * @author Dmitry Krivolap
+ * @version 1.0
+ */
 public class Runner {
     public static void main(String[] args) {
         Gift gift = RandomGiftCreator.createGift();

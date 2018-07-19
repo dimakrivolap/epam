@@ -1,8 +1,21 @@
 package service;
-
+/*
+ * service.Sorter
+ *
+ * Version 1.0
+ *
+ * Copyright Dmitry Krivolap, 2018
+ */
 import model.entity.Sweet;
 import java.util.List;
-
+/**
+ * Sorter is the class of buisness-logic which have ability to sort sweets by:
+ * -weight
+ * -sugar
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 public class Sorter {
 
     public static void sortWeight(List<Sweet> sweets) {

@@ -1,4 +1,5 @@
-package model.entity;/*
+package model.entity;
+/*
  * model.entity.Gift
  *
  * Version 1.0
@@ -8,7 +9,13 @@ package model.entity;/*
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Gift entity class. Each object contains a list of Sweets objects.
+ *
+ * @author Dmitry Krivolap
+ * @version 1.0
+ * @see Sweet
+ */
 public class Gift {
 
     private List<Sweet> sweets;

@@ -10,9 +10,14 @@ package service;
 import model.entity.Gift;
 import model.entity.Sweet;
 import java.util.Random;
-
 import static model.entity.SweetType.*;
-
+/**
+ * Factory class for gift creation commands.
+ *
+ * @author Dmitry Krivolap
+ * @version 1.0
+ * @see Gift
+ */
 public class RandomGiftCreator {
 
     private static Random random = new Random();

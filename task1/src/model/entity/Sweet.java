@@ -1,4 +1,5 @@
-package model.entity;/*
+package model.entity;
+/*
  * model.entity.Sweet
  *
  * Version 1.0
@@ -6,6 +7,13 @@ package model.entity;/*
  * Copyright Dmitry Krivolap, 2018
  */
 
+/**
+ * Sweet entity class. Each object contains count of sugar and weight.
+ *
+ * @author Dmitry Krivolap
+ * @version 1.0
+ * @see SweetType
+ */
 public class Sweet {
     private double sugar;
     private double weight;
