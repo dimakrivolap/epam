@@ -35,7 +35,7 @@ public class RandomGiftCreator {
             case 0:
                 return new Sweet(TWIX, 70, 70);
             case 1:
-                return new Sweet(SNICKERS, 50, 80);
+                return new Sweet(SNICKERS, 55, 80);
             default:
                 return new Sweet(MARS, 60, 60);
         }
