@@ -7,13 +7,17 @@ package controller;
  * Copyright Dmitry Krivolap, 2018
  */
 import model.entity.Gift;
+import model.entity.Sweet;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
 import service.GiftCharacteristic;
 import service.RandomGiftCreator;
-import model.entity.Sweet;
 import service.Searcher;
 import service.Sorter;
 
 import java.util.List;
+
+
 /**
  * Runner contains controls for the most important classes from task1 package.
  *
@@ -21,25 +25,26 @@ import java.util.List;
  * @version 1.0
  */
 public class Runner {
+    private static final Logger logger = Logger.getLogger("Runner");
+
     public static void main(String[] args) {
         Gift gift = RandomGiftCreator.createGift();
-        System.out.println("Total Weight : " + GiftCharacteristic.getWeight(gift.getSweets()));
-        System.out.println("Original: ");
+        logger.info("Total Weight : " + GiftCharacteristic.getWeight(gift.getSweets()));
+        logger.debug("Original: ");
         printSweets(gift.getSweets());
-        System.out.println("Sorted by weight: ");
+        logger.debug("Sorted by weight: ");
         Sorter.sortWeight(gift.getSweets());
         printSweets(gift.getSweets());
-        System.out.println("Sorted by sugar: ");
+        logger.debug("Sorted by sugar: ");
         Sorter.sortSugar(gift.getSweets());
         printSweets(gift.getSweets());
-        System.out.println("Found sweets: ");
+        logger.debug("Found sweets: ");
         printSweets(Searcher.find(gift.getSweets(),50, 60));
     }
 
     private static void printSweets(List<Sweet> list) {
-        System.out.println();
         for (Sweet sweet : list) {
-            System.out.println(sweet.getSweetType()
+            logger.info(sweet.getSweetType()
                     + " Weight: " + sweet.getWeight()
                     + " Sugar: " + sweet.getSugar());
         }
