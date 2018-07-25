@@ -9,7 +9,6 @@ package controller;
 import model.entity.Gift;
 import model.entity.Sweet;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Level;
 import service.GiftCharacteristic;
 import service.RandomGiftCreator;
 import service.Searcher;
@@ -25,26 +24,26 @@ import java.util.List;
  * @version 1.0
  */
 public class Runner {
-    private static final Logger logger = Logger.getLogger("Runner");
+    private static final Logger LOGGER = Logger.getLogger("Runner");
 
     public static void main(String[] args) {
         Gift gift = RandomGiftCreator.createGift();
-        logger.info("Total Weight : " + GiftCharacteristic.getWeight(gift.getSweets()));
-        logger.debug("Original: ");
+        LOGGER.info("Total Weight : " + GiftCharacteristic.getWeight(gift.getSweets()));
+        LOGGER.debug("Original: ");
         printSweets(gift.getSweets());
-        logger.debug("Sorted by weight: ");
+        LOGGER.debug("Sorted by weight: ");
         Sorter.sortWeight(gift.getSweets());
         printSweets(gift.getSweets());
-        logger.debug("Sorted by sugar: ");
+        LOGGER.debug("Sorted by sugar: ");
         Sorter.sortSugar(gift.getSweets());
         printSweets(gift.getSweets());
-        logger.debug("Found sweets: ");
+        LOGGER.debug("Found sweets: ");
         printSweets(Searcher.find(gift.getSweets(),50, 60));
     }
 
     private static void printSweets(List<Sweet> list) {
         for (Sweet sweet : list) {
-            logger.info(sweet.getSweetType()
+            LOGGER.info(sweet.getSweetType()
                     + " Weight: " + sweet.getWeight()
                     + " Sugar: " + sweet.getSugar());
         }
