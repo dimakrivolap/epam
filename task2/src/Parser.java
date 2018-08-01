@@ -26,6 +26,12 @@ public class Parser {
         }
     }
 
+    public Parser() {
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public void getSortedText(){
         int[] length = getSizeSentences();
@@ -39,7 +45,19 @@ public class Parser {
             }
         }
     }
-    private List<String> getSentences(){
+
+    public List<String> getParagraphs(){
+
+        Matcher matcher = Pattern.compile("([^\t]+)").matcher(text);
+        List<String> list = new ArrayList<>();
+        while (matcher.find())
+        {
+            list.add(matcher.group(1));
+        }
+        return list;
+    }
+
+    public List<String> getSentences(){
         Matcher matcher = Pattern.compile("([^.!?]+)").matcher(text);
         List<String> list = new ArrayList<>();
         while (matcher.find())
@@ -49,7 +67,7 @@ public class Parser {
         return list;
     }
 
-    private String[] getWords(String sentence){
+    public String[] getWords(String sentence){
         Pattern pattern = Pattern.compile("\\s*(\\s|,|!|\\.)\\s*");
         return pattern.split(sentence);
     }

@@ -1,22 +1,27 @@
 package service.parser;
 
+import model.entity.TextComponent;
+import model.entity.TextComposite;
 import org.apache.log4j.Logger;
 
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public abstract class BaseParser implements Parser{
-    private BaseParser baseParser;
+    private BaseParser nextParser;
     private static final Logger LOGGER = Logger.getLogger(BaseParser.class);
-    public void parse(String text){
-        if (text.isEmpty()) {
-            LOGGER.error("Parse method is called on empty string inside TextParser.");
-            throw new IllegalArgumentException("Parse method is called on empty string inside TextParser.");
-        }
+
+    public BaseParser getNextParser() {
+        return nextParser;
     }
 
-    public BaseParser getBaseParser() {
-        return baseParser;
+    public void setNextParser(BaseParser nextParser) {
+        this.nextParser = nextParser;
     }
 
-    public void setBaseParser(BaseParser baseParser) {
-        this.baseParser = baseParser;
+    public TextComponent parse(String text){
+        return null;
     }
+
 }
