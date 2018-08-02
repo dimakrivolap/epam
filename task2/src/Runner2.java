@@ -14,9 +14,11 @@ public class Runner2 {
         String text = FileReader.read(fileName).toString();
         Parser parser = new Parser();
         parser.setText(text);
+        parser.parse();
+        System.out.println(parser.getSortedText());
         //System.out.println(parser.getSentences());
-        System.out.println(parser.getParagraphs());
-        //BaseParser textParser = new TextParser(text);
+        //System.out.println(parser.getParagraphs());
+        //BaseParser textParser = new ProgrammingBookParser(text);
         //LOGGER.info("File :" + fileName+ "is read");
         //TextComposite textComposite = textParser.parse();
         //String sortedText = Sorter.sort(textComposite);

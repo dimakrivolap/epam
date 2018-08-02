@@ -23,4 +23,11 @@ public class TextComposite implements TextComponent {
     public void print() {
         System.out.println(components);
     }
+
+    @Override
+    public String toString() {
+        return "TextComposite{" +
+                "components=" + components +
+                '}';
+    }
 }

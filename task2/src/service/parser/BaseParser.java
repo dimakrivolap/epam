@@ -1,12 +1,12 @@
 package service.parser;
 
 import model.entity.TextComponent;
-import model.entity.TextComposite;
 import org.apache.log4j.Logger;
 
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public abstract class BaseParser implements Parser{
     private BaseParser nextParser;
@@ -20,8 +20,16 @@ public abstract class BaseParser implements Parser{
         this.nextParser = nextParser;
     }
 
-    public TextComponent parse(String text){
-        return null;
+    public abstract TextComponent parse(String text);
+
+
+
+    protected void saveToFile(TextComponent component){
+        try {
+            Files.write(Paths.get("result.txt"), component.toString().getBytes(), StandardOpenOption.APPEND);
+        }catch (IOException e) {
+            LOGGER.error("IOException" + e.getStackTrace());
+        }
     }
 
 }

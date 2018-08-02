@@ -1,5 +1,6 @@
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -7,24 +8,6 @@ import java.util.regex.Pattern;
 
 public class Parser {
     private String text;
-    public Parser(String file) {
-        while (true) {
-            try {
-                FileReader fr = new FileReader(file);
-                Scanner scan = new Scanner(fr);
-                int i = 1;
-                while (scan.hasNextLine()) {
-                    text+=scan.nextLine();
-                    i++;
-                }
-                fr.close();
-            }
-            catch (Exception e){
-
-            }
-
-        }
-    }
 
     public Parser() {
     }
@@ -33,54 +16,82 @@ public class Parser {
         this.text = text;
     }
 
-    public void getSortedText(){
-        int[] length = getSizeSentences();
-        for (int j=0;j<length.length;j++) {
-            for (int i = 0; i < length.length - 1; i++) {
-                if (length[i] < length[i + 1]) {
-                    int tmp = length[i];
-                    length[i] = length[i + 1];
-                    length[i + 1] = tmp;
+    public String getText() {
+        return text;
+    }
+
+    public String getSortedText() {
+        String result = "";
+        int maxLength = 0;
+        String maxSentence = "";
+        String[] sentences = (String[]) getSentences().toArray();
+        for (int i = 0; i < sentences.length; i++) {
+            for (int j = 0; j < sentences.length; j++) {
+                if (getWordsInSentence(sentences[i]).toArray().length < getWordsInSentence(sentences[j]).toArray().length) {
+                    //maxLength = sizeSentence;
+                    maxSentence = sentences[j];
                 }
             }
+            result += maxSentence;
         }
+        return result;
     }
 
-    public List<String> getParagraphs(){
 
+    public List<String> getParagraphs() {
         Matcher matcher = Pattern.compile("([^\t]+)").matcher(text);
         List<String> list = new ArrayList<>();
-        while (matcher.find())
-        {
+        while (matcher.find()) {
             list.add(matcher.group(1));
         }
         return list;
     }
 
-    public List<String> getSentences(){
+    public List<String> getSentences() {
         Matcher matcher = Pattern.compile("([^.!?]+)").matcher(text);
         List<String> list = new ArrayList<>();
-        while (matcher.find())
-        {
+        while (matcher.find()) {
             list.add(matcher.group(1));
         }
         return list;
     }
 
-    public String[] getWords(String sentence){
-        Pattern pattern = Pattern.compile("\\s*(\\s|,|!|\\.)\\s*");
-        return pattern.split(sentence);
+    private List<String> getWordsInSentence(String sentence) {
+        Matcher matcher = Pattern.compile("\\w+").matcher(sentence);
+        List<String> list = new ArrayList<>();
+        while (matcher.find()) {
+            list.add(matcher.group());
+        }
+        return list;
     }
 
-    private int[] getSizeSentences(){
-        List<String> sentences = getSentences();
+    public List<String> getAllWords() {
+        List<String> allWords = new ArrayList<>();
+        for (String sentance : getSentences()) {
+            allWords.addAll(getWordsInSentence(sentance));
+        }
+        return allWords;
+    }
+
+    private int[] getSizeSentences(List<String> sentences) {
         int[] length = new int[sentences.size()];
         int i = 0;
-        for (String sentence : sentences){
-            String[] words = getWords(sentence);
-            length[i] = words.length;
+        for (String sentence : sentences) {
+            List<String> words = getWordsInSentence(sentence);
+            length[i] = words.size();
             i++;
         }
         return length;
     }
+
+    public void parse() {
+        List<String> paragraphs = getParagraphs();
+        List<String> sentences = getSentences();
+        List<String> words = getAllWords();
+        System.out.println("Paragraphs: " + paragraphs + "\n");
+        System.out.println("Sentences: " + sentences + "\n");
+        System.out.println("Words: " + words + "\n");
+    }
+
+
 }
