@@ -1,41 +1,57 @@
 package model.entity;
 
 
+import org.apache.log4j.Logger;
+
+import java.util.List;
+
 public class TextElement implements TextComponent {
+
+    private static final Logger LOGGER = Logger.getLogger(TextElement.class);
     private String body;
-    private String type;
 
-    public TextElement(String body, String type) {
+    public TextElement(String body) {
         this.body = body;
-        this.type = type;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     @Override
-    public void print() {
+    public void add(TextComponent textComponent) {
+        LOGGER.error("add operation is not supported in TextElement.");
+    }
 
+    @Override
+    public String getTextComponent() {
+        return body;
+    }
+
+    @Override
+    public List<TextComponent> getComponentList() {
+        LOGGER.error("getComponentList operation is not supported for TextElement object");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setTextComponent(String textComponent) {
+        this.body = textComponent;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TextElement that = (TextElement) o;
+        return body != null ? body.equals(that.getTextComponent()) : that.getTextComponent() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return body != null ? body.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "TextElement{" +
-                "body='" + body + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return body;
     }
+
 }
