@@ -1,0 +1,3 @@
+	Hello. My name is dima.
+	I am form Belarus Minsk. This is QuickSortExample.
+	Good luck. End lesson.
