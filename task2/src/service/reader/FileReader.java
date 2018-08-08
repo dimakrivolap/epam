@@ -1,5 +1,11 @@
 package service.reader;
-
+/**
+ * FileReader.
+ *
+ * 08 August 2018
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 import org.apache.log4j.Logger;
 
 import java.io.*;
