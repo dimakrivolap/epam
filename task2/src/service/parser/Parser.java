@@ -1,6 +1,7 @@
 package service.parser;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
@@ -12,6 +13,11 @@ import java.util.regex.Pattern;
  */
 public class Parser {
     private String text;
+
+    private String TEXT_REGEX = ResourceBundle.getBundle("regex").getString("TEXT_REGEX");
+    private String PARAGRAPH_REGEX = ResourceBundle.getBundle("regex").getString("PARAGRAPH_REGEX");
+    private String SENTENCE_REGEX = ResourceBundle.getBundle("regex").getString("SENTENCE_REGEX");
+    private String WORD_REGEX = ResourceBundle.getBundle("regex").getString("WORD_REGEX");
 
     public Parser() {
     }
@@ -25,7 +31,7 @@ public class Parser {
     }
 
     public List<String> getParagraphs() {
-        Matcher matcher = Pattern.compile("([^\t]+)").matcher(text);
+        Matcher matcher = Pattern.compile(PARAGRAPH_REGEX).matcher(text);
         List<String> list = new ArrayList<>();
         while (matcher.find()) {
             list.add(matcher.group(1));
@@ -33,8 +39,10 @@ public class Parser {
         return list;
     }
 
+
+
     public List<String> getSentences() {
-        Matcher matcher = Pattern.compile("([^.!?]+)").matcher(text);
+        Matcher matcher = Pattern.compile(SENTENCE_REGEX).matcher(text);
         List<String> list = new ArrayList<>();
         while (matcher.find()) {
             list.add(matcher.group(1));
@@ -43,7 +51,7 @@ public class Parser {
     }
 
     private List<String> getWordsInSentence(String sentence) {
-        Matcher matcher = Pattern.compile("\\w+").matcher(sentence);
+        Matcher matcher = Pattern.compile(WORD_REGEX).matcher(sentence);
         List<String> list = new ArrayList<>();
         while (matcher.find()) {
             list.add(matcher.group());

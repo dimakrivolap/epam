@@ -2,6 +2,7 @@ package util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
@@ -12,11 +13,14 @@ import java.util.regex.Pattern;
  * @author Dmitry Krivolap
  */
 public class Sorter {
+
+    private static String WORD_REGEX = ResourceBundle.getBundle("regex").getString("WORD_REGEX");
+
     public Sorter() {
     }
 
     public static void sortByCountWords(List<String> sentences) {
-        //List<String> sentences = getSentences();
+
         for (int i = 0; i < sentences.size(); i++) {
             for (int j = 0; j < sentences.size(); j++) {
                 if (getCountWordsSentence(sentences.get(i)) <
@@ -27,7 +31,7 @@ public class Sorter {
                 }
             }
         }
-        //return sentences.toString();
+
     }
 
     private static int getCountWordsSentence(String sentence) {
@@ -36,7 +40,7 @@ public class Sorter {
     }
 
     private static List<String> getWordsInSentence(String sentence) {
-        Matcher matcher = Pattern.compile("\\w+").matcher(sentence);
+        Matcher matcher = Pattern.compile(WORD_REGEX).matcher(sentence);
         List<String> list = new ArrayList<>();
         while (matcher.find()) {
             list.add(matcher.group());
