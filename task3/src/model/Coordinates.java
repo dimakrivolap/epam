@@ -11,10 +11,11 @@ public class Coordinates {
         this.y = y;
     }
 
-    public static Coordinates getRandomCoordinates(){
+    public static Coordinates getRandomCoordinates() {
         Random r = new Random();
-        return new Coordinates(r.nextDouble(),r.nextDouble());
+        return new Coordinates(r.nextDouble(), r.nextDouble());
     }
+
     public double getX() {
         return x;
     }
@@ -31,10 +32,9 @@ public class Coordinates {
         this.y = y;
     }
 
-    public static double getDistation(Coordinates c1, Coordinates c2){
-        return Math.hypot(c1.x-c2.x,c1.y-c2.y);
+    public static double getDistation(Coordinates c1, Coordinates c2) {
+        return Math.hypot(c1.x - c2.x, c1.y - c2.y);
     }
-
 
 
 }

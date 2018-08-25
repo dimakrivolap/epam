@@ -1,18 +1,16 @@
 package model;
 
+import exception.UberManagerException;
 import org.apache.log4j.Logger;
 import service.UberManager;
 
-import java.util.concurrent.TimeUnit;
-
 public class User extends Thread {
 
-    private final static Logger LOGGER = Logger.getLogger(User.class);
+    private static final Logger LOGGER = Logger.getLogger(User.class);
 
     private String userName;
     private Coordinates startCoordinates;
     private Coordinates endCoordinates;
-    private Taxi taxi;
     private UberManager manager;
 
     public User(String userName, Coordinates startCoordinates, Coordinates endCoordinates, UberManager uberManager) {
@@ -46,13 +44,6 @@ public class User extends Thread {
         this.endCoordinates = endCoordinates;
     }
 
-    public Taxi getTaxi() {
-        return taxi;
-    }
-
-    public void setTaxi(Taxi taxi) {
-        this.taxi = taxi;
-    }
 
     @Override
     public String toString() {
@@ -60,7 +51,6 @@ public class User extends Thread {
                 "userName='" + userName + '\'' +
                 ", startCoordinates=" + startCoordinates +
                 ", endCoordinates=" + endCoordinates +
-                ", taxi=" + taxi +
                 ", uberManager=" + manager +
                 '}';
     }
@@ -68,23 +58,15 @@ public class User extends Thread {
     @Override
     public void run() {
         try {
-            TimeUnit.SECONDS.sleep(1);
-            System.out.println("пользователь "+getUserName()+" вызывает такси");
-            //manager.findTaxi(this);
-            //manager.addUser(this);
+            LOGGER.info("пользователь " + getUserName() + " вызывает такси");
             Taxi taxiNear = manager.getTaxi(this);
             taxiNear.runOrder(this);
             manager.deleteUser(this);
-            //System.out.println(manager.getUsers());
-
-            System.out.println(userName + " приехал");
-
-            //waitTaxi();
-            //Taxi taxi = manager.findTaxi(this);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.info(taxiNear.getNameTaxi() + " подвёз " + userName);
+        } catch (UberManagerException e) {
+            LOGGER.error("UberManagerException");
             Thread.currentThread().interrupt();
         }
+
     }
 }
