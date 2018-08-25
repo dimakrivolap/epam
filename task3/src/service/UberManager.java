@@ -1,4 +1,14 @@
 package service;
+/**
+ * UberManager. The class Thread-Safe singleton manages taxis and users.
+ * <p>
+ * 25 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ * @see User
+ * @see Taxi
+ */
 
 import exception.UberManagerException;
 import model.Coordinates;
@@ -18,7 +28,7 @@ public class UberManager {
     private static AtomicBoolean instanceCreated = new AtomicBoolean();
     private static UberManager instance;
     private static ReentrantLock lock = new ReentrantLock();
-    private static final  int QUANTITY = 5;
+    private static final int QUANTITY = 5;
     private static final Semaphore semaphore = new Semaphore(QUANTITY, true);
     private Deque<User> users = new ArrayDeque<>();
     private Deque<Taxi> taxis = new ArrayDeque<>();

@@ -1,4 +1,12 @@
 package model;
+/**
+ * User thread class. Each object contains username, startCoordinates, endCoordinates.
+ * <p>
+ * 25 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 
 import exception.UberManagerException;
 import org.apache.log4j.Logger;

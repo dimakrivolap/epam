@@ -1,4 +1,12 @@
 package controller;
+/**
+ * Runner.
+ * <p>
+ * 25 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 
 import model.Coordinates;
 import model.Taxi;

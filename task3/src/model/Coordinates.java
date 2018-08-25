@@ -1,4 +1,12 @@
 package model;
+/**
+ * Coordinates. The class contains location coordinates.
+ * <p>
+ * 25 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 
 import java.util.Random;
 
