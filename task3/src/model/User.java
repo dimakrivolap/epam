@@ -69,12 +69,15 @@ public class User extends Thread {
     public void run() {
         try {
             TimeUnit.SECONDS.sleep(1);
-            System.out.println("пользователь вызывает такси");
+            System.out.println("пользователь "+getUserName()+" вызывает такси");
             //manager.findTaxi(this);
-            manager.addUser(this);
+            //manager.addUser(this);
             Taxi taxiNear = manager.getTaxi(this);
             taxiNear.runOrder(this);
-            System.out.println("пользователь приехал");
+            manager.deleteUser(this);
+            //System.out.println(manager.getUsers());
+
+            System.out.println(userName + " приехал");
 
             //waitTaxi();
             //Taxi taxi = manager.findTaxi(this);

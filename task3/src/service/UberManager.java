@@ -17,8 +17,10 @@ public class UberManager {
     private static AtomicBoolean instanceCreated = new AtomicBoolean();
     private static UberManager instance;
     private static ReentrantLock lock = new ReentrantLock();
+    private static ReentrantLock lockOperation = new ReentrantLock();
     private static Condition condition = lock.newCondition();
     private Deque<User> users = new ArrayDeque<>();
+    private Deque<Taxi> taxis = new ArrayDeque<>();
 
     public static UberManager getInstance() {
         if (!instanceCreated.get()) {
@@ -36,19 +38,65 @@ public class UberManager {
     }
 
 
-    public void addUser(User user) {
-        users.offer(user);
+    public void deleteUser(User user) {
+        users.remove(user);
+        lockOperation.unlock();
     }
 
-    public Taxi getTaxi(User user) {
-        Taxi taxiNear;
-        double distantion = 100;
+    public void addUser(User user) {
+        lockOperation.lock();
+        users.offer(user);
+        lockOperation.unlock();
+    }
 
-        for (User user: users) {
-            if (distantion > Coordinates.getDistation(taxi.getLocation(), user.getStartCoordinates())) {
-                distantion = Coordinates.getDistation(taxi.getLocation(), user.getStartCoordinates());
-                taxiNear = user;
+    public void deleteTaxi(Taxi taxi) {
+        taxis.remove(taxi);
+        lockOperation.unlock();
+    }
+
+    public void addTaxi(Taxi taxi) {
+
+        lockOperation.lock();
+        taxis.offer(taxi);
+        lockOperation.unlock();
+
+
+    }
+
+    public Deque<User> getUsers() {
+        try {
+            lockOperation.lock();
+            return users;
+        } finally {
+            lockOperation.unlock();
+        }
+    }
+
+    public Deque<Taxi> getTaxis() {
+        try {
+            lockOperation.lock();
+            return taxis;
+        } finally {
+            lockOperation.unlock();
+        }
+    }
+
+
+    public Taxi getTaxi(User user) {
+        try {
+            lockOperation.lock();
+
+            Taxi taxiNear = taxis.getFirst();
+            double distantion = Coordinates.getDistation(taxiNear.getLocation(), user.getStartCoordinates());
+            for (Taxi taxi : taxis) {
+                if (distantion > Coordinates.getDistation(taxi.getLocation(), user.getStartCoordinates())) {
+                    distantion = Coordinates.getDistation(taxi.getLocation(), user.getStartCoordinates());
+                    taxiNear = taxi;
+                }
             }
+            return taxiNear;
+        } finally {
+            //lockOperation.unlock();
         }
     }
 }
