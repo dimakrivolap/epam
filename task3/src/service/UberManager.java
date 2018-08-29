@@ -33,6 +33,9 @@ public class UberManager {
     private Deque<User> users = new ArrayDeque<>();
     private Deque<Taxi> taxis = new ArrayDeque<>();
 
+    private UberManager() {
+    }
+
     public static UberManager getInstance() {
         if (!instanceCreated.get()) {
             lock.lock();
