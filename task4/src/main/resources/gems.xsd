@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.epam.by/gems"
+        xmlns:tns="http://www.epam.by/gems"
+           elementFormDefault="qualified">
+    
+    <element name="gems">
+        <complexType>
+            <sequence>
+                <element name = "gem" 
+                         type = "tns:Gem"
+                         minOccurs = "16"
+                         maxOccurs = "unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <complexType name = "Gem">
+			<sequence>
+				<element name = "name">
+					<simpleType>
+						<restriction base = "string">
+							<pattern value="[a-zA-Z]{3,}"/>
+						</restriction>
+					</simpleType>
+				</element>            
+				<element name = "preciousness" type = "tns:Preciousness"/>
+				<element name = "origin" type = "tns:Origin"/>
+				<element name = "visualParameters" type = "tns:VisualParameters"/>
+				<element name = "extractionTime" type = "date"/>
+				<element name = "value" type = "tns:Value"/>
+			</sequence>
+			<attribute name = "id" use="required" type="ID"/>
+    </complexType>
+	
+	<simpleType name="Preciousness">
+		<restriction base = "string">
+			<enumeration value = "precious"/>
+			<enumeration value = "semiprecious"/>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="Origin">
+		<restriction base = "string">
+			<pattern value="[a-zA-Z]{2,}"/>
+		</restriction>
+	</simpleType>
+
+    <complexType name="VisualParameters">
+        <sequence>
+            <element name = "color" type = "tns:Color"/>
+            <element name = "transparency" type = "tns:Transparency"/> 
+            <element name = "countFacets" type = "tns:CountFacets"/> 
+        </sequence>
+    </complexType>
+    
+	<simpleType name = "Color">
+		<restriction base = "string">
+			<pattern value="[a-zA-Z]{3,}"/>
+		</restriction>
+    </simpleType> 
+			
+	<simpleType name = "Transparency">
+        <restriction base = "byte">
+            <minInclusive value = "0"/>
+            <maxInclusive value = "100"/>
+        </restriction>
+    </simpleType>
+	
+	<simpleType name = "CountFacets">
+        <restriction base = "byte">
+            <minInclusive value = "4"/>
+            <maxInclusive value = "15"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Value">
+		<simpleContent>
+            <extension base = "string">
+				<attribute name="unit" use = "optional" default="ct">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value = "ct"/>
+							<enumeration value = "g"/>
+						</restriction>
+					</simpleType>
+				</attribute>
+			</extension>
+        </simpleContent>
+    </complexType> 
+
+</schema>

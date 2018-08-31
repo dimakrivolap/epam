@@ -1,0 +1,5 @@
+package entity;
+
+public enum GemEnum {
+    NAME, PRECIOUSNESS, ORIGIN, COLOR, TRANSPARENCY, COUNTFACETS, VALUE, EXTRACTIONTIME;
+}

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.epam.by/gems"
+        xsi:schemaLocation="http://www.epam.by/gems gems.xsd">
+    <gem id="ID-1">
+		<name>amethyst</name>
+		<preciousness>precious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>purple</color>
+			<transparency>100</transparency>
+			<countFacets>6</countFacets>
+		</visualParameters>
+		<extractionTime>2018-08-25</extractionTime>
+		<value unit = "g">5</value>
+	</gem>
+	<gem id="ID-2">
+		<name>ruby</name>
+		<preciousness>precious</preciousness>
+		<origin>US</origin>
+		<visualParameters>
+			<color>red</color>
+			<transparency>100</transparency>
+			<countFacets>8</countFacets>
+		</visualParameters>
+		<extractionTime>2017-09-25</extractionTime>
+		<value unit = "g">10</value>
+	</gem>
+	<gem id="ID-3">
+		<name>diamond</name>
+		<preciousness>precious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>100</transparency>
+			<countFacets>5</countFacets>
+		</visualParameters>
+		<extractionTime>2011-08-25</extractionTime>
+		<value unit = "ct">5</value>
+	</gem>
+	<gem id="ID-4">
+		<name>emerald</name>
+		<preciousness>precious</preciousness>
+		<origin>IT</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>100</transparency>
+			<countFacets>9</countFacets>
+		</visualParameters>
+		<extractionTime>2008-02-21</extractionTime>
+		<value unit = "g">3</value>
+	</gem>
+	<gem id="ID-5">
+		<name>topaz</name>
+		<preciousness>precious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>90</transparency>
+			<countFacets>6</countFacets>
+		</visualParameters>
+		<extractionTime>2012-08-25</extractionTime>
+		<value>7</value>
+	</gem>
+	<gem id="ID-6">
+		<name>topaz</name>
+		<preciousness>precious</preciousness>
+		<origin>US</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>100</transparency>
+			<countFacets>12</countFacets>
+		</visualParameters>
+		<extractionTime>2011-08-25</extractionTime>
+		<value>11</value>
+	</gem>
+	<gem id="ID-7">
+		<name>emerald</name>
+		<preciousness>precious</preciousness>
+		<origin>FR</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>100</transparency>
+			<countFacets>6</countFacets>
+		</visualParameters>
+		<extractionTime>2002-08-25</extractionTime>
+		<value unit ="ct">5</value>
+	</gem>
+	<gem id="ID-8">
+		<name>diamond</name>
+		<preciousness>precious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>70</transparency>
+			<countFacets>14</countFacets>
+		</visualParameters>
+		<extractionTime>2015-08-25</extractionTime>
+		<value>22</value>
+	</gem>
+	<gem id="ID-9">
+		<name>amethyst</name>
+		<preciousness>precious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>purple</color>
+			<transparency>100</transparency>
+			<countFacets>6</countFacets>
+		</visualParameters>
+		<extractionTime>2012-08-25</extractionTime>
+		<value unit = "g">17</value>
+	</gem>
+	<gem id="ID-10">
+		<name>amber</name>
+		<preciousness>semiprecious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>0</transparency>
+			<countFacets>6</countFacets>
+		</visualParameters>
+		<extractionTime>2010-08-25</extractionTime>
+		<value unit = "g">12</value>
+	</gem>
+	<gem id="ID-11">
+		<name>amber</name>
+		<preciousness>semiprecious</preciousness>
+		<origin>US</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>100</transparency>
+			<countFacets>4</countFacets>
+		</visualParameters>
+		<extractionTime>2018-12-25</extractionTime>
+		<value unit = "g">12</value>
+	</gem>
+	<gem id="ID-12">
+		<name>amber</name>
+		<preciousness>semiprecious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>100</transparency>
+			<countFacets>6</countFacets>
+		</visualParameters>
+		<extractionTime>2018-08-17</extractionTime>
+		<value>25</value>
+	</gem>
+	<gem id="ID-13">
+		<name>agat</name>
+		<preciousness>semiprecious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>blue</color>
+			<transparency>100</transparency>
+			<countFacets>9</countFacets>
+		</visualParameters>
+		<extractionTime>2018-01-25</extractionTime>
+		<value unit = "g">32</value>
+	</gem>
+	<gem id="ID-14">
+		<name>agat</name>
+		<preciousness>semiprecious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>blue</color>
+			<transparency>100</transparency>
+			<countFacets>7</countFacets>
+		</visualParameters>
+		<extractionTime>2018-03-25</extractionTime>
+		<value unit = "g">44</value>
+	</gem>
+	<gem id="ID-15">
+		<name>amber</name>
+		<preciousness>semiprecious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>100</transparency>
+			<countFacets>13</countFacets>
+		</visualParameters>
+		<extractionTime>2018-04-25</extractionTime>
+		<value>41</value>
+	</gem>
+	<gem id="ID-16">
+		<name>amber</name>
+		<preciousness>semiprecious</preciousness>
+		<origin>RU</origin>
+		<visualParameters>
+			<color>white</color>
+			<transparency>100</transparency>
+			<countFacets>4</countFacets>
+		</visualParameters>
+		<extractionTime>2018-08-25</extractionTime>
+		<value unit = "g">5</value>
+	</gem>	
+</gems>
