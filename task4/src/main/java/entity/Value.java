@@ -2,11 +2,11 @@ package entity;
 
 public class Value {
     private Unit unit;
-    private int Value;
+    private int value;
 
     public Value(Unit unit, int value) {
         this.unit = unit;
-        Value = value;
+        this.value = value;
     }
 
     public Unit getUnit() {
@@ -18,10 +18,10 @@ public class Value {
     }
 
     public int getValue() {
-        return Value;
+        return value;
     }
 
     public void setValue(int value) {
-        Value = value;
+        this.value = value;
     }
 }

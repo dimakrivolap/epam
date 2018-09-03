@@ -12,6 +12,11 @@ public class Gem {
     private Date extractionTime;
     private Value value;
 
+    public Gem() {
+        visualParameter = new VisualParameter();
+        value = new Value(Unit.CARAT,0);
+    }
+
     public Gem(String name, Preciousness preciousness, Locale origin, VisualParameter visualParameter, Date extractionTime, Value value) {
         this.name = name;
         this.preciousness = preciousness;

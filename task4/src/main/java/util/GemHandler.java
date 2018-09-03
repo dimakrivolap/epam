@@ -2,20 +2,27 @@ package util;
 
 import entity.Gem;
 import entity.GemEnum;
+import entity.Preciousness;
+import entity.Unit;
+import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class GemHandler extends DefaultHandler {
+    private static final Logger LOGGER = Logger.getLogger(GemHandler.class);
     private Set<Gem> gems;
     private Gem current = null;
     private GemEnum currentEnum = null;
+    private EnumSet<GemEnum> withText;
 
     public GemHandler() {
         gems = new HashSet<Gem>();
+        withText = EnumSet.range(GemEnum.NAME, GemEnum.EXTRACTIONTIME);
     }
 
     public Set<Gem> getGems() {
@@ -28,22 +35,72 @@ public class GemHandler extends DefaultHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        System.out.println("Parsing started");
+        LOGGER.info("Parsing started");
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        String s = localName;
-        for (int i = 0; i < attributes.getLength(); i++) {
-            s += " " + attributes.getLocalName(i) + "=" + attributes.getValue(i);
+        if ("gem".equals(localName)) {
+            current = new Gem();
+            current.setId(attributes.getValue(0));
+        } else if ("value".equals(localName)) {
+            if (attributes.getValue(0) != null) {
+                current.getValue().setUnit(Unit.getUnit(attributes.getValue(0)));
+            }
+            else {
+                current.getValue().setUnit(Unit.CARAT);
+            }
+        } else {
+            GemEnum temp = GemEnum.valueOf(localName.toUpperCase());
+            if (withText.contains(temp)) {
+                currentEnum = temp;
+            }
         }
-        System.out.print(s.trim());
     }
 
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-        System.out.print(new String(ch, start, length));
+        String s = new String(ch, start, length).trim();
+        if (currentEnum != null) {
+            switch (currentEnum) {
+                case NAME:
+                    current.setName(s);
+                    break;
+                case PRECIOUSNESS:
+                    current.setPreciousness(Preciousness.valueOf(s.toUpperCase()));
+                    break;
+                case ORIGIN:
+                    current.setOrigin(new Locale(s));
+                    break;
+                case COLOR:
+                    current.getVisualParameter().setColor(s);
+                    break;
+                case TRANSPARENCY:
+                    current.getVisualParameter().setTransparency(new Byte(s));
+                    break;
+                case COUNTFACETS:
+                    current.getVisualParameter().setCountFacets(new Byte(s));
+                    break;
+                case VALUE:
+                    current.getValue().setValue(new Integer(s));
+                    break;
+                case EXTRACTIONTIME:
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy", Locale.ENGLISH);
+                    try {
+                        current.setExtractionTime(formatter.parse(s));
+                    } catch (ParseException e) {
+                        LOGGER.error("Parse error :" + s);
+                    }
+                    break;
+                default:
+                    LOGGER.error("EnumConstantNotPresentException");
+                    throw new EnumConstantNotPresentException(
+                            currentEnum.getDeclaringClass(), currentEnum.name());
+            }
+        }
+        currentEnum = null;
+
     }
 
     @Override
@@ -55,6 +112,6 @@ public class GemHandler extends DefaultHandler {
 
     @Override
     public void endDocument() throws SAXException {
-        System.out.println("\nParsing ended");
+        LOGGER.info("\nParsing ended");
     }
 }

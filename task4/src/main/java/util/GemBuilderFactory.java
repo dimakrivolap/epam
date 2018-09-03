@@ -1,6 +1,9 @@
 package util;
 
+import org.apache.log4j.Logger;
+
 public class GemBuilderFactory {
+    private static final Logger LOGGER = Logger.getLogger(GemBuilderFactory.class);
     private enum TypeParser {
         SAX, STAX, DOM
     }
@@ -15,8 +18,10 @@ public class GemBuilderFactory {
             case DOM:
                 return new GemsDOMBuilder();
             default:
+                LOGGER.error("GemBuilderFactory Error");
                 throw new EnumConstantNotPresentException(
                         parser.getDeclaringClass(), parser.name());
+
         }
     }
 }

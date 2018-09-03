@@ -1,5 +1,6 @@
 package util;
 
+import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -7,6 +8,7 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import java.io.IOException;
 
 public class GemsSaxBuilder extends AbstractGemsBuilder {
+    private static final Logger LOGGER = Logger.getLogger(GemsSaxBuilder.class);
     private GemHandler gemHandler;
     private XMLReader reader;
 
@@ -16,18 +18,18 @@ public class GemsSaxBuilder extends AbstractGemsBuilder {
             reader = XMLReaderFactory.createXMLReader();
             reader.setContentHandler(gemHandler);
         } catch (SAXException e) {
-            System.err.print("ошибка SAX парсера: " + e);
+            LOGGER.error("ошибка SAX парсера: " + e);
+
         }
     }
 
     public void buildSetGems(String fileName) {
         try {
-// разбор XML-документа
             reader.parse(fileName);
         } catch (SAXException e) {
-            System.err.print("ошибка SAX парсера: " + e);
+            LOGGER.error("ошибка SAX парсера: " + e);
         } catch (IOException e) {
-            System.err.print("ошибка I/О потока: " + e);
+            LOGGER.error("ошибка I/О потока: " + e);
         }
         gems = gemHandler.getGems();
     }

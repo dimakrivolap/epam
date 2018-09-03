@@ -5,6 +5,9 @@ public class VisualParameter {
     private byte transparency;
     private byte countFacets;
 
+    public VisualParameter() {
+    }
+
     public VisualParameter(String color, byte transparency, byte countFacets) {
         this.color = color;
         this.transparency = transparency;

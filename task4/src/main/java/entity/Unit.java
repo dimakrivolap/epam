@@ -11,4 +11,12 @@ public enum Unit {
     public String getValue() {
         return value;
     }
+
+    public static Unit getUnit(String s) {
+        if("g".equals(s)){
+            return Unit.GRAM;
+        }
+        else
+            return Unit.CARAT;
+    }
 }
