@@ -1,7 +1,16 @@
 package entity;
+/**
+ * Gem. Entity class.
+ * <p>
+ * 26 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Gem {
     private String id;
@@ -14,10 +23,11 @@ public class Gem {
 
     public Gem() {
         visualParameter = new VisualParameter();
-        value = new Value(Unit.CARAT,0);
+        value = new Value(Unit.CARAT, 0);
     }
 
-    public Gem(String name, Preciousness preciousness, Locale origin, VisualParameter visualParameter, Date extractionTime, Value value) {
+    public Gem(String id, String name, Preciousness preciousness, Locale origin, VisualParameter visualParameter, Date extractionTime, Value value) {
+        this.id = id;
         this.name = name;
         this.preciousness = preciousness;
         this.origin = origin;
@@ -80,5 +90,37 @@ public class Gem {
 
     public void setValue(Value value) {
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gem gem = (Gem) o;
+        return Objects.equals(id, gem.id) &&
+                Objects.equals(name, gem.name) &&
+                preciousness == gem.preciousness &&
+                Objects.equals(origin, gem.origin) &&
+                Objects.equals(visualParameter, gem.visualParameter) &&
+                Objects.equals(extractionTime, gem.extractionTime) &&
+                Objects.equals(value, gem.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, preciousness, origin, visualParameter, extractionTime, value);
+    }
+
+    @Override
+    public String toString() {
+        return "Gem{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", preciousness=" + preciousness +
+                ", origin=" + origin +
+                ", visualParameter=" + visualParameter.toString() +
+                ", extractionTime=" + extractionTime +
+                ", value=" + value.toString() +
+                '}';
     }
 }

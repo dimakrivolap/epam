@@ -1,4 +1,12 @@
 package util;
+/**
+ * AbstractGemsBuilder. Class contains set with gems.
+ * <p>
+ * 26 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 
 import entity.Gem;
 

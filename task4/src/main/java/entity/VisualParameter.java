@@ -1,4 +1,14 @@
 package entity;
+/**
+ * VisualParameter.
+ * <p>
+ * 26 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
+
+import java.util.Objects;
 
 public class VisualParameter {
     private String color;
@@ -36,5 +46,29 @@ public class VisualParameter {
 
     public void setCountFacets(byte countFacets) {
         this.countFacets = countFacets;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VisualParameter that = (VisualParameter) o;
+        return transparency == that.transparency &&
+                countFacets == that.countFacets &&
+                Objects.equals(color, that.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, transparency, countFacets);
+    }
+
+    @Override
+    public String toString() {
+        return "VisualParameter{" +
+                "color='" + color + '\'' +
+                ", transparency=" + transparency +
+                ", countFacets=" + countFacets +
+                '}';
     }
 }

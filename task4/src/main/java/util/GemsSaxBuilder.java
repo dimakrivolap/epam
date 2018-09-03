@@ -1,4 +1,12 @@
 package util;
+/**
+ * GemsSaxBuilder. Builder gems set.
+ * <p>
+ * 26 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;

@@ -1,9 +1,14 @@
 package util;
+/**
+ * GemHandler. Handler for SAX Parser.
+ * <p>
+ * 26 August 2018
+ *
+ * @version 1.0
+ * @author Dmitry Krivolap
+ */
 
-import entity.Gem;
-import entity.GemEnum;
-import entity.Preciousness;
-import entity.Unit;
+import entity.*;
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -46,8 +51,8 @@ public class GemHandler extends DefaultHandler {
         } else if ("value".equals(localName)) {
             if (attributes.getValue(0) != null) {
                 current.getValue().setUnit(Unit.getUnit(attributes.getValue(0)));
-            }
-            else {
+                currentEnum = GemEnum.VALUE;
+            } else {
                 current.getValue().setUnit(Unit.CARAT);
             }
         } else {
@@ -82,9 +87,6 @@ public class GemHandler extends DefaultHandler {
                 case COUNTFACETS:
                     current.getVisualParameter().setCountFacets(new Byte(s));
                     break;
-                case VALUE:
-                    current.getValue().setValue(new Integer(s));
-                    break;
                 case EXTRACTIONTIME:
                     SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy", Locale.ENGLISH);
                     try {
@@ -92,6 +94,9 @@ public class GemHandler extends DefaultHandler {
                     } catch (ParseException e) {
                         LOGGER.error("Parse error :" + s);
                     }
+                    break;
+                case VALUE:
+                    current.getValue().setValue(new Integer(s));
                     break;
                 default:
                     LOGGER.error("EnumConstantNotPresentException");

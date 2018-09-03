@@ -9,7 +9,6 @@
             <sequence>
                 <element name = "gem" 
                          type = "tns:Gem"
-                         minOccurs = "16"
                          maxOccurs = "unbounded"/>
             </sequence>
         </complexType>
