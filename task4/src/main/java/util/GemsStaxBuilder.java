@@ -55,12 +55,11 @@ public class GemsStaxBuilder extends AbstractGemsBuilder {
 
     private Gem buildGem(XMLStreamReader reader) throws XMLStreamException {
         Gem gem = new Gem();
-        gem.setId(reader.getAttributeValue(null,"id"));
-        //gem.setName(reader.);
+        gem.setId(reader.getAttributeValue(0));
         SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy", Locale.ENGLISH);
         String name;
         int type;
-        while (reader.hasName()) {
+        while (reader.hasNext()) {
             type = reader.next();
             switch (type) {
                 case XMLStreamReader.START_ELEMENT:
@@ -98,7 +97,6 @@ public class GemsStaxBuilder extends AbstractGemsBuilder {
                     }
                     break;
             }
-
         }
         throw new XMLStreamException("Unknown element in tag Gem");
     }
@@ -132,6 +130,7 @@ public class GemsStaxBuilder extends AbstractGemsBuilder {
                             visualParameter.setCountFacets(new Byte(getXMLText(reader)));
                             break;
                     }
+                    break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
                     if (GemEnum.valueOf(name.toUpperCase()) == GemEnum.VISUALPARAMETERS) {
@@ -145,25 +144,12 @@ public class GemsStaxBuilder extends AbstractGemsBuilder {
 
     private Value getXMLValue(XMLStreamReader reader) throws XMLStreamException {
         Value value = new Value();
-        if (reader.getAttributeCount() > 0) {//TODO--
-            //value.setUnit(reader.getAttributeValue(null, Unit.getUnit(reader.getAttributeValue(0))));
+        if (reader.getAttributeCount() > 0) {
+            value.setUnit(Unit.getUnit(reader.getAttributeValue(0)));
         } else {
             value.setUnit(Unit.CARAT);
         }
-        int type;
-        String name;
-        while (reader.hasNext()) {
-            type = reader.next();
-            switch (type) {
-                case XMLStreamReader.START_ELEMENT:
-                    value.setValue(new Integer(getXMLText(reader)));
-                    break;
-
-                case XMLStreamConstants.END_ELEMENT:
-                    return value;
-
-            }
-        }
-        throw new XMLStreamException("Unknown element in tag Value");
+        value.setValue(new Integer(getXMLText(reader)));
+        return value;
     }
 }
