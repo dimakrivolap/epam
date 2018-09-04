@@ -12,10 +12,10 @@ import static org.testng.Assert.assertTrue;
 public class StAXTest {
     GemsStaxBuilder staxBuilder = new GemsStaxBuilder();
 
-    String schemaName = "D:\\EPAM\\tasks\\mytasks\\task4\\src\\main\\resources\\gems.xsd";
+    String schemaName = "src\\main\\resources\\gems.xsd";
     @Test
     public void saxTestWithOneGem() throws ParseException {
-        String fileName = "D:\\EPAM\\tasks\\mytasks\\task4\\src\\main\\resources\\gem_for_test.xml";
+        String fileName = "src\\main\\resources\\gem_for_test.xml";
         SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy", Locale.ENGLISH);
         Gem original = new Gem("ID-1", "amethyst", Preciousness.PRECIOUS,
                 new Locale("RU"), new VisualParameter("purple",
