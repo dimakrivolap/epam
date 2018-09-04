@@ -92,7 +92,7 @@ public class GemHandler extends DefaultHandler {
                     try {
                         current.setExtractionTime(formatter.parse(s));
                     } catch (ParseException e) {
-                        LOGGER.error("Parse error :" + s);
+                        LOGGER.error("Parse error :" + s + e.getMessage());
                     }
                     break;
                 case VALUE:

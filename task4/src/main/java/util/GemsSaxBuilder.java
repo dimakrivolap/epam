@@ -26,7 +26,7 @@ public class GemsSaxBuilder extends AbstractGemsBuilder {
             reader = XMLReaderFactory.createXMLReader();
             reader.setContentHandler(gemHandler);
         } catch (SAXException e) {
-            LOGGER.error("ошибка SAX парсера: " + e);
+            LOGGER.error("ошибка SAX парсера: " + e.getMessage());
 
         }
     }
@@ -35,9 +35,9 @@ public class GemsSaxBuilder extends AbstractGemsBuilder {
         try {
             reader.parse(fileName);
         } catch (SAXException e) {
-            LOGGER.error("ошибка SAX парсера: " + e);
+            LOGGER.error("ошибка SAX парсера: " + e.getMessage());
         } catch (IOException e) {
-            LOGGER.error("ошибка I/О потока: " + e);
+            LOGGER.error("ошибка I/О потока: " + e.getMessage());
         }
         gems = gemHandler.getGems();
     }
