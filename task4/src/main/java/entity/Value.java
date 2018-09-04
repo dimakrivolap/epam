@@ -15,6 +15,9 @@ public class Value {
     private Unit unit;
     private int value;
 
+    public Value() {
+    }
+
     public Value(Unit unit, int value) {
         this.unit = unit;
         this.value = value;
